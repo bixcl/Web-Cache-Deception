@@ -1,5 +1,10 @@
 # Web Cache Deception Test Environment
 
+This program is fully built by AI in order to test the Web cache deciption vulnerability<br>
+in order to run the web app, forget what is written by ai down, and run xampp, but the webapp inside htdocs folder and navigete to wcd/index.php page.<br>
+
+
+
 This is a simple environment to demonstrate the Web Cache Deception vulnerability.
 
 ## What is Web Cache Deception?
