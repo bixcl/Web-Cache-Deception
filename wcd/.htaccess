@@ -1,0 +1,25 @@
+# Enable URL rewriting
+RewriteEngine On
+
+# Allow any file or directory that actually exists to be served directly
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Simulating a CDN/cache behavior for demonstration purposes
+# This would normally be handled by your CDN configuration
+# In a real scenario, .css files might be cached at the CDN level
+
+# Cache CSS files for 1 hour
+<FilesMatch "\.(css)$">
+Header set Cache-Control "max-age=3600, public"
+</FilesMatch>
+
+# For PHP files, ensure no caching
+<FilesMatch "\.(php)$">
+Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+</FilesMatch>
+
+# This rewrite rule simulates the vulnerability
+# It will still execute PHP files when accessed as /file.php/anything.css
+RewriteRule ^(.+)\.php/(.+)\.css$ $1.php [L]
